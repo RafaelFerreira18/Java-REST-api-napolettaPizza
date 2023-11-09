@@ -1,15 +1,15 @@
-// package napoletta.app.demo.service;
+package napoletta.app.demo.service;
 
-// import napoletta.app.demo.models.Pizza;
+import napoletta.app.demo.models.Pizza;
 
-// public interface PizzaService {
-//     Iterable<Pizza> searchAll();
+public interface PizzaService {
+    Iterable<Pizza> searchAll();
 
-// 	Pizza searchById(Long id);
+	Pizza searchById(Long id);
 
-// 	void insert(Pizza pizza);
+	void insert(Pizza pizza);
 
-// 	void update(Long id, Pizza pizza);
+	void update(Long id, Pizza pizza);
 
-// 	void delete(Long id);
-// }
+	void delete(Long id);
+}
