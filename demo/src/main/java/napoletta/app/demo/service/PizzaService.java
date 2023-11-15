@@ -7,7 +7,7 @@ public interface PizzaService {
 
 	Pizza searchById(Long id);
 
-	void insert(Pizza pizza);
+	Pizza insert(Pizza pizza);
 
 	void update(Long id, Pizza pizza);
 

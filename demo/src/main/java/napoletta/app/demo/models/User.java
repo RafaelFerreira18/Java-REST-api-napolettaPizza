@@ -1,19 +1,15 @@
 package napoletta.app.demo.models;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 @Entity
 @Table(name="tab_user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
     private Long id;
     
     @Column(nullable = false)
@@ -25,9 +21,8 @@ public class User {
 
     @Column(nullable = false)
     private String password;
-
-    // @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    // private Cart cart;
+    
+    private String role;
 
     /**
      * @return String return the name
@@ -72,10 +67,6 @@ public class User {
     }
 
     /**
-     * @return Pizza[] return the cart
-     */
-
-    /**
      * @return Long return the id
      */
     public Long getId() {
@@ -89,18 +80,12 @@ public class User {
         this.id = id;
     }
 
-    // /**
-    //  * @return Cart return the cart
-    //  */
-    // public Cart getCart() {
-    //     return cart;
-    // }
+    public String getRole(){
+        return this.role;
+    }
 
-    // /**
-    //  * @param cart the cart to set
-    //  */
-    // public void setCart(Cart cart) {
-    //     this.cart = cart;
-    // }
+    public void setRole(String role){
+        this.role = role;
+    }
 
 }

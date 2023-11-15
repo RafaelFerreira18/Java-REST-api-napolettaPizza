@@ -1,5 +1,6 @@
 package napoletta.app.demo.models;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -7,9 +8,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+
 
 @Entity
+@Table(name="tab_pizza")
 public class Pizza {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,10 +29,18 @@ public class Pizza {
     private String description;
 
     @Column(nullable = false)
-    private Integer price;
+    private Double price;
 
-    @Column(nullable = false)
-    private String pizzaImgUrl;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "pizza_image",
+        joinColumns = {
+            @JoinColumn(name="pizza_id")
+        },
+        inverseJoinColumns = {
+            @JoinColumn(name="image_id")
+        }
+    )
+    private ImageModel pizzaImage;
     
 
     /**
@@ -74,29 +88,29 @@ public class Pizza {
     /**
      * @return Integer return the price
      */
-    public Integer getPrice() {
+    public Double getPrice() {
         return price;
     }
 
     /**
      * @param price the price to set
      */
-    public void setPrice(Integer price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
     /**
-     * @return String return the pizzaImgUrl
+     * @return Set<ImageModel> return the pizzaImage
      */
-    public String getPizzaImgUrl() {
-        return pizzaImgUrl;
+    public ImageModel getPizzaImage() {
+        return pizzaImage;
     }
 
     /**
-     * @param pizzaImgUrl the pizzaImgUrl to set
+     * @param pizzaImage the pizzaImage to set
      */
-    public void setPizzaImgUrl(String pizzaImgUrl) {
-        this.pizzaImgUrl = pizzaImgUrl;
+    public void setPizzaImage(ImageModel pizzaImage) {
+        this.pizzaImage = pizzaImage;
     }
 
 }

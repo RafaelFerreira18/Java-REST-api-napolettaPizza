@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 import napoletta.app.demo.models.User;
-import napoletta.app.demo.models.UserRepository;
+import napoletta.app.demo.repositories.UserRepository;
 import napoletta.app.demo.service.UserService;
 
 @Service

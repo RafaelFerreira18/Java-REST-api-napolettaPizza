@@ -3,11 +3,13 @@ package napoletta.app.demo.service.impl;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import napoletta.app.demo.models.Pizza;
-import napoletta.app.demo.models.PizzaRepository;
+import napoletta.app.demo.repositories.PizzaRepository;
 import napoletta.app.demo.service.PizzaService;
 
+@Service
 public class PizzaServiceImpl implements PizzaService{
     @Autowired
 	private PizzaRepository pizzaRepository;
@@ -37,7 +39,10 @@ public class PizzaServiceImpl implements PizzaService{
 	}
 
     @Override
-    public void insert(Pizza pizza) {
-        pizzaRepository.save(pizza);
+    public Pizza insert(Pizza pizza) {
+        if(pizzaRepository.existsByPizzaName(pizza.getPizzaName())){
+			throw new IllegalArgumentException("This pizza already exists!");
+		}
+        return this.pizzaRepository.save(pizza);
     }
 }
